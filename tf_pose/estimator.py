@@ -1,8 +1,6 @@
 import logging
 import math
-
 import slidingwindow as sw
-
 import cv2
 import numpy as np
 import tensorflow as tf
@@ -408,7 +406,7 @@ class TfPoseEstimator:
         return npimg_q
 
     @staticmethod
-    def draw_humans(npimg, humans, imgcopy=False, exercise="bicep"):
+    def draw_humans(npimg, humans, imgcopy=False, exercise="shoulder"):
         if imgcopy:
             npimg = np.copy(npimg)
         image_h, image_w = npimg.shape[:2]
@@ -428,6 +426,13 @@ class TfPoseEstimator:
                     parts = Joints.bicep()
                     # joints
                     joints = Joints.bicepPairs()
+                    # # limits
+                    # upperlimit =
+                    # lowerlimit =
+                
+                if(exercise=="shoulder"):
+                    parts=Joints.shoulders()
+                    joints=Joints.shoulderPairs()
 
                 # draw pointers(circles) at the selected body parts
                 if i in parts:

@@ -3,6 +3,7 @@ class Joints:
         self.pairs=None
         self.parts=None
         self.angle_limits=None
+        self.suggestions=None
 
     def get_parts(self):
         return self.parts
@@ -37,4 +38,4 @@ class Tricep(Joints):
         super().__init__()
         self.parts=(1,5,6,7,11,12)
         self.pairs=((5,6), (6, 7), (1, 11), (11,12)) 
-        self.angle_limits={6:(0,10),11:(120,180)}
+        self.angle_limits={6:(70,180),11:(120,180)}

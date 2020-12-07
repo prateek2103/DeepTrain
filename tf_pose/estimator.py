@@ -410,7 +410,7 @@ class TfPoseEstimator:
         if imgcopy:
             npimg = np.copy(npimg)
         image_h, image_w = npimg.shape[:2]
-        centers = {}
+        centers = {};data={}
 
         for human in humans:
             # draw point
@@ -436,18 +436,18 @@ class TfPoseEstimator:
                 if i in parts:
                     center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
                     centers[i] = center
-                    cv2.circle(npimg, center, 3, common.CocoColors[i], thickness=3, lineType=8, shift=0)
-                    cv2.rectangle(npimg,(center[0]+10,center[1]+5),(center[0]+40,center[1]+25),(255,255,255),thickness=-1)
-                    cv2.putText(npimg, str(i), (center[0]+15,center[1]+20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
+                    cv2.circle(npimg, center, 4, (0,0,0), thickness=3, lineType=8, shift=0)
+                    # cv2.rectangle(npimg,(center[0]+2,center[1]+5),(center[0]+18,center[1]+25),(255,255,255),thickness=-1)
+                    cv2.putText(npimg, str(i), (center[0]+10,center[1]+15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
             # draw line to join the joints
             for pair_order, pair in enumerate(joints):
                 if pair[0] not in human.body_parts.keys() or pair[1] not in human.body_parts.keys():
                     continue
-                cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
+                cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 2)
 
             # draw angles
-            data={}
+            
             for i in range(len(joints)-1):
                 if(all(j in human.body_parts.keys() for j in [joints[i][0], joints[i+1][0], joints[i+1][1]]) and joints[i][1] == joints[i+1][0]):
                     midpoint=joints[i][1]

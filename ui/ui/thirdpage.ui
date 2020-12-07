@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>865</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1051</width>
+      <height>841</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <widget class="QFrame" name="frame">
+       <property name="styleSheet">
+        <string notr="true">background-color:black;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QWidget" name="gridLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1051</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QFrame" name="frame_2">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QPushButton" name="Backbutton">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>40</y>
+              <width>93</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">Border-image:url(:/images/images/Back.png)</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="topheading">
+            <property name="geometry">
+             <rect>
+              <x>410</x>
+              <y>40</y>
+              <width>221</width>
+              <height>91</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:white;
+font: 36pt &quot;MS Shell Dlg 2&quot;;
+</string>
+            </property>
+            <property name="text">
+             <string>Triceps</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="subheading">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>200</y>
+          <width>901</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:white;
+font-size:50px;
+border-radius:25px;
+border:3px solid green;
+border-color: rgb(0, 255, 226);
+text-align:center;
+</string>
+        </property>
+        <property name="text">
+         <string>                Pulley-Push Down</string>
+        </property>
+       </widget>
+       <widget class="QFrame" name="description">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>350</y>
+          <width>901</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:3px solid white;
+border-color: rgb(0, 255, 226);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="exercise_image">
+         <property name="geometry">
+          <rect>
+           <x>720</x>
+           <y>50</y>
+           <width>161</width>
+           <height>241</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/images/images/triceppush.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QTextEdit" name="Description">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>50</y>
+           <width>641</width>
+           <height>241</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border:none;
+background-color:white;
+padding:10px;
+text-align:justify;</string>
+         </property>
+         <property name="html">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Using a cable machine raise the pulley above your head, user the bar. Set your feet width apart,tuck our wlbows in and lean forward.Now move your hands up and down in a complete range of motion and make sure keep your hands in tight with your body.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="actionbutton">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>730</y>
+          <width>261</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:2px solid white;
+border-color:rgb(0,255,226);
+border-radius:25px;
+font-size:20px;
+color:white;</string>
+        </property>
+        <property name="text">
+         <string>Open Camera</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="resources3.qrc"/>
+ </resources>
+ <connections/>
+</ui>

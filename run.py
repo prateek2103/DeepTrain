@@ -30,6 +30,10 @@ if __name__ == '__main__':
     parser.add_argument('--resize-out-ratio', type=float, default=4.0,
                         help='if provided, resize heatmaps before they are post-processed. default=1.0')
 
+    parser.add_argument('--exercise', type=str, default='bicep',
+                        help='choose the exercise')
+
+
     args = parser.parse_args()
 
     w, h = model_wh(args.resize)
@@ -50,7 +54,7 @@ if __name__ == '__main__':
 
     logger.info('inference image: %s in %.4f seconds.' % (args.image, elapsed))
 
-    image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
+    image = TfPoseEstimator.draw_humans( args.exercise,image, humans, imgcopy=False)
 
     try:
         import matplotlib

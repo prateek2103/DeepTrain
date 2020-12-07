@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/triceppush.jpg</file>
+    <file>images/tricep.jpg</file>
+    <file>images/Back.png</file>
+    <file>images/shoulderpress.jpg</file>
+    <file>images/bicepcurl.jpg</file>
+  </qresource>
+</RCC>

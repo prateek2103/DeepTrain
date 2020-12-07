@@ -37,6 +37,10 @@ if __name__ == '__main__':
     
     parser.add_argument('--tensorrt', type=str, default="False",
                         help='for tensorrt process.')
+
+    parser.add_argument('--exercise', type=str, default='bicep',
+                        help='choose the exercise')
+                        
     args = parser.parse_args()
 
     logger.debug('initialization %s : %s' % (args.model, get_graph_path(args.model)))
@@ -57,7 +61,7 @@ if __name__ == '__main__':
         humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
 
         logger.debug('postprocess+')
-        image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
+        image = TfPoseEstimator.draw_humans(args.exercise,image, humans, imgcopy=False)
 
         logger.debug('show+')
         cv2.putText(image,

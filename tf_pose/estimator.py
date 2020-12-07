@@ -5,14 +5,14 @@ import cv2
 import numpy as np
 import tensorflow as tf
 import time
-
+from tf_pose import utils
 from tf_pose import common
 from tf_pose.common import CocoPart
 from tf_pose.tensblur.smoother import Smoother
 # import tensorflow.contrib.tensorrt as trt
 
 # pairs for every exericse
-from tf_pose.groups import Joints
+from tf_pose.groups import Bicep,Shoulder,Tricep
 
 try:
     from tf_pose.pafprocess import pafprocess
@@ -406,12 +406,11 @@ class TfPoseEstimator:
         return npimg_q
 
     @staticmethod
-    def draw_humans(npimg, humans, imgcopy=False, exercise="shoulder"):
+    def draw_humans( exercise,npimg, humans, imgcopy=False):
         if imgcopy:
             npimg = np.copy(npimg)
         image_h, image_w = npimg.shape[:2]
         centers = {}
-        joints = ()
 
         for human in humans:
             # draw point
@@ -422,23 +421,24 @@ class TfPoseEstimator:
 
                 # check the type of exercise
                 if(exercise == 'bicep'):
-                    # parts
-                    parts = Joints.bicep()
-                    # joints
-                    joints = Joints.bicepPairs()
-                    # # limits
-                    # upperlimit =
-                    # lowerlimit =
+                    body=Bicep()
                 
                 if(exercise=="shoulder"):
-                    parts=Joints.shoulders()
-                    joints=Joints.shoulderPairs()
+                    body=Shoulder()
 
+                if(exercise=="tricep"):
+                    body=Tricep()
+                
+                parts = body.get_parts()
+                joints = body.get_pairs()
+                
                 # draw pointers(circles) at the selected body parts
                 if i in parts:
                     center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
                     centers[i] = center
                     cv2.circle(npimg, center, 3, common.CocoColors[i], thickness=3, lineType=8, shift=0)
+                    cv2.rectangle(npimg,(center[0]+10,center[1]+5),(center[0]+40,center[1]+25),(255,255,255),thickness=-1)
+                    cv2.putText(npimg, str(i), (center[0]+15,center[1]+20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
             # draw line to join the joints
             for pair_order, pair in enumerate(joints):
@@ -447,21 +447,24 @@ class TfPoseEstimator:
                 cv2.line(npimg, centers[pair[0]], centers[pair[1]], common.CocoColors[pair_order], 3)
 
             # draw angles
+            data={}
             for i in range(len(joints)-1):
                 if(all(j in human.body_parts.keys() for j in [joints[i][0], joints[i+1][0], joints[i+1][1]]) and joints[i][1] == joints[i+1][0]):
-                    x1, y1 = centers[joints[i][0]]
-                    x2, y2 = centers[joints[i][1]]
-                    x3, y3 = centers[joints[i+1][1]]
-                    ang = math.degrees(math.atan2(y3-y2, x3-x2) - math.atan2(y1-y2, x1-x2))
-                    if ang < 0:
-                        ang = ang+360
+                    midpoint=joints[i][1]
+                    dispx,dispy=centers[midpoint]
+                    # ang_start,ang_stop=body.get_limit(midpoint)
+                    # print(joints[i][1])
+                    ang = utils.get_angle(centers[joints[i][0]],centers[joints[i][1]],centers[joints[i+1][1]])
+                    data[midpoint]=ang
+                    # cv2.putText(npimg, str(round(ang, 2)), (dispx, dispy), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                    # status=""
+            #         if(ang not in range(ang_start,ang_stop+1)):
+            #             status="Incorrect"
+            #         else:
+            #             status='Correct'
+            # cv2.putText(npimg,status,(216,20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
-                    if ang > 180:
-                        ang = 360-ang
-
-                    cv2.putText(npimg, str(round(ang, 2)), (x2, y2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-
-        return npimg
+        return (npimg,data)
 
     def _get_scaled_img(self, npimg, scale):
         get_base_scale = lambda s, w, h: max(self.target_size[0] / float(h), self.target_size[1] / float(w)) * s

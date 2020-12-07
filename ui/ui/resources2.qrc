@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/graph.png</file>
+    <file>images/pngaaa.com-314602.png</file>
+    <file>images/tricep1.png</file>
+    <file>images/background.jpeg</file>
+    <file>images/shoulder1.png</file>
+    <file>images/background2.jpg</file>
+    <file>images/rec.png</file>
+  </qresource>
+</RCC>

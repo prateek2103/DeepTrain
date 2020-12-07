@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1048</width>
+    <height>839</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1041</width>
+      <height>811</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QFrame" name="Mainframe">
+       <property name="styleSheet">
+        <string notr="true">Background:black</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>441</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 36pt &quot;Arial&quot;;
+color: rgb(255, 255, 255)</string>
+        </property>
+        <property name="text">
+         <string>Start a Workout</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>110</y>
+          <width>131</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Arial&quot;;
+color: rgb(0, 255, 226)</string>
+        </property>
+        <property name="text">
+         <string>Beginners</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>120</y>
+          <width>111</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 12pt &quot;Arial&quot;;
+color: rgb(0, 255, 226)</string>
+        </property>
+        <property name="text">
+         <string>Popular</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>130</y>
+          <width>21</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/rec.png) 0 0 0 0 stretch stretch;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>130</y>
+          <width>21</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/images/images/rec.png) 0 0 0 0 stretch stretch;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>250</y>
+          <width>1001</width>
+          <height>521</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QFrame" name="Innerframe">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QPushButton" name="shoulderbutton">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>10</y>
+              <width>911</width>
+              <height>151</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">Background:black;
+font: 24pt &quot;Arial&quot;;
+border-radius:30px;
+border: 2px solid black;
+border-color:rgb(0, 255, 226);
+color:white;
+text-align:left;
+padding-left:10px;
+
+</string>
+            </property>
+            <property name="text">
+             <string>Shoulder</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="bicepbutton">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>190</y>
+              <width>911</width>
+              <height>151</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">Background:black;
+font: 24pt &quot;Arial&quot;;
+border-radius:30px;
+border: 2px solid black;
+border-color:rgb(0, 255, 226);
+color:white;
+text-align:left;
+padding-left:10px;
+
+</string>
+            </property>
+            <property name="text">
+             <string>Biceps</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="tricepbutton">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>360</y>
+              <width>911</width>
+              <height>151</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">Background:black;
+font: 24pt &quot;Arial&quot;;
+border-radius:30px;
+border: 2px solid black;
+border-color:rgb(0, 255, 226);
+color:white;
+text-align:left;
+padding-left:10px;
+
+</string>
+            </property>
+            <property name="text">
+             <string>Triceps</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_7">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>200</y>
+              <width>271</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+
+border-image:url(:/images/images/pngaaa.com-314602.png);
+background-color:transparent;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_8">
+            <property name="geometry">
+             <rect>
+              <x>630</x>
+              <y>370</y>
+              <width>301</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+
+border-image:url(:/images/images/tricep1.png);
+background-color:transparent;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_6">
+            <property name="geometry">
+             <rect>
+              <x>610</x>
+              <y>20</y>
+              <width>321</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image:url(:/images/images/shoulder1.png);
+background-color:transparent;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_9">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>110</y>
+              <width>91</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:yellow;
+font: 9pt &quot;MS Shell Dlg 2&quot;;
+Background-color: transparent;</string>
+            </property>
+            <property name="text">
+             <string>Beginners</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_12">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>120</y>
+              <width>31</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image:url(:/images/images/graph.png);
+background:transparent;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_13">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>300</y>
+              <width>31</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image:url(:/images/images/graph.png);
+background:transparent;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_14">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>470</y>
+              <width>31</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-image:url(:/images/images/graph.png);
+background:transparent;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_10">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>290</y>
+              <width>91</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:yellow;
+font: 9pt &quot;MS Shell Dlg 2&quot;;
+Background-color: transparent;</string>
+            </property>
+            <property name="text">
+             <string>Beginners</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_11">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>460</y>
+              <width>91</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color:yellow;
+font: 9pt &quot;MS Shell Dlg 2&quot;;
+Background-color: transparent;</string>
+            </property>
+            <property name="text">
+             <string>Beginners</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="resources2.qrc"/>
+ </resources>
+ <connections/>
+</ui>

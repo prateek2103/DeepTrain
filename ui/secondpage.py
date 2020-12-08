@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import thirdpage
 import resources2_rc
+from exercise_info import Bicep,Shoulder,Tricep
 
 class Exercise():
     def __init__(self):
@@ -200,32 +201,16 @@ class Ui_MainWindow(object):
         self.bicepbutton.clicked.connect(lambda: self.go_to_exercise("bicep"))
         self.tricepbutton.clicked.connect(lambda: self.go_to_exercise("tricep"))
         
-
-
     def go_to_exercise(self,name):
-        basedir="E:\\minor_project\\project\\deeptrain\\tf-pose-estimation"
-        exercise=Exercise()
+        exercise=None
         if(name=='shoulder'):
-            exercise.heading="Shoulder"
-            exercise.subheading="Shoulder Press"
-            exercise.description="Lie on the bemch wiht a dumbbell in each hand and your feet flat on the floor. You can rest your feet up on the bench if it's more comfortable.Push the dumbbells up so that your arms are directly over your shoulders and your palms are up. Pull your abdominals in, and tilt your chin toward your chest.Lower the dumbbells down and a little to the side until your elbows are slightly below your shoulders.4.Roll your Shoulder blades back and down, like you're pinching them together and accentuating your chest.Push the weights back up, taking care to lock your elbows or allow your shoulder blades to rise off the bench."
-            exercise.image="shoulderpress"
-            exercise.command="python "+basedir+"\\statusbar.py --image=dumbbell.jpg --model=cmu --exercise=shoulder"
+            exercise=Shoulder()
 
         elif(name=='bicep'):
-            exercise.heading="Bicep"
-            exercise.subheading="Bicep Curl"
-            exercise.description="Take 2 dumbbells. Stand with you rlegs should with apart, bend your knees slightly. let your arms to hand down with your palms facing each other.Move only your forearms, slowly curl the dumbbells up to shoulder level. Turn your palms up when they pass your thighs. Keep your elbows pressed against your sides throughout the exercise."
-            exercise.image="bicepcurl"
-            exercise.command="python "+basedir+"\\statusbar.py --model=cmu --image=bicepcurl.jpg --exercise=bicep"
+            exercise=Bicep()
 
         elif(name=='tricep'):
-            exercise.heading="Triceps"
-            exercise.subheading="Pulley Push Down"
-            exercise.description="Using a cable machine raise the pulley above your head, user the bar. Set your feet width apart,tuck our wlbows in and lean forward.Now move your hands up and down in a complete range of motion and make sure keep your hands in tight with your body."
-            exercise.image="triceppush"
-            exercise.command="python "+basedir+"\\statusbar.py --model=cmu --image=tricep-pushdown.jpg --exercise=tricep"
-
+            exercise=Tricep()
 
         self.window=QtWidgets.QMainWindow()
         self.ui=thirdpage.Ui_MainWindow(exercise)

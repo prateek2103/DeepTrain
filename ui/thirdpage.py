@@ -118,9 +118,12 @@ class Ui_MainWindow(object):
         self.actionbutton.clicked.connect(self.call_func)
 
     def call_func(self):
-        print(self.exercise.command)
-        os.system(self.exercise.command)
-
+        self.actionbutton.setText("Opened")
+        if(self.actionbutton.text()=="Opened"):
+                os.system(self.exercise.command)
+                print(self.exercise.command)
+       
+        
     def go_back(self):
         self.window=QtWidgets.QMainWindow()
         self.ui=secondpage.Ui_MainWindow()

@@ -124,7 +124,7 @@ class Ui_Form(object):
 "border-color:rgb(0, 255, 226)")
         self.exercise.setObjectName("exercise")
         self.frame_2 = QtWidgets.QFrame(self.frame)
-        self.frame_2.setGeometry(QtCore.QRect(30, 90, 321, 221))
+        self.frame_2.setGeometry(QtCore.QRect(30, 90, 321, 200))
         self.frame_2.setStyleSheet("border:1px solid white;\n"
 "border:1px solid white;\n"
 "border-color:rgb(0, 255, 226)")
@@ -132,13 +132,13 @@ class Ui_Form(object):
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
         self.textEdit = QtWidgets.QTextEdit(self.frame)
-        self.textEdit.setGeometry(QtCore.QRect(380, 0, 171, 331))
+        self.textEdit.setGeometry(QtCore.QRect(380, 0, 171, 310))
         self.textEdit.setStyleSheet("color:white;\n"
 "border:1px solid white;\n"
 "border-color:rgb(0, 255, 226)")
         self.textEdit.setObjectName("textEdit")
         self.textEdit_2 = QtWidgets.QTextEdit(self.frame)
-        self.textEdit_2.setGeometry(QtCore.QRect(0, 336, 551, 91))
+        self.textEdit_2.setGeometry(QtCore.QRect(0, 315, 551, 112))
         self.textEdit_2.setStyleSheet("color:white;\n"
 "border:1px solid white;\n"
 "border-color:rgb(0, 255, 226)")
@@ -157,15 +157,15 @@ class Ui_Form(object):
         for i in range(0,3):
             #joints
             self.d["jointNumber"+str(i+1)] = QtWidgets.QLabel(self.frame_2)
-            self.d["jointNumber"+str(i+1)].setGeometry(QtCore.QRect(30, 20+inc, 91, 41))
+            self.d["jointNumber"+str(i+1)].setGeometry(QtCore.QRect(45, 40+inc, 91, 41))
             self.d['jointNumber'+str(i+1)].setStyleSheet("color:rgb(255, 255, 255)")
-            # self.d["jointNumber"+str(i+1)].setObjectName("jointNumber"+str(i+1))
+            self.d["jointNumber"+str(i+1)].setText("Joint      :")
             
             #value
             self.d_v["jointValue"+str(i+1)] = QtWidgets.QLabel(self.frame_2)
-            self.d_v["jointValue"+str(i+1)].setGeometry(QtCore.QRect(160, 20+inc, 101, 41))
+            self.d_v["jointValue"+str(i+1)].setGeometry(QtCore.QRect(175, 40+inc, 101, 41))
             self.d_v["jointValue"+str(i+1)].setStyleSheet("color:rgb(255,255,255)")
-            # self.d_v["jointValue"+str(i+1)].setObjectName("Angle"+str(i+1))
+            self.d_v["jointValue"+str(i+1)].setText("Angle")
             inc+=40
 
         self.retranslateUi(Form)
@@ -174,22 +174,24 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.exercise.setText(_translate("Form", "Pulley push down"))
+        self.exercise.setText(_translate("Form", "Loading exercise..."))
         self.textEdit.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:15px; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\"></span></p></body></html>"))
+"<p style=\" margin-top:10px; margin-bottom:0px; margin-left:0px;padding-left:5px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\"></span></p></body></html>"))
         self.textEdit_2.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:15px; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:15px;\"></span></p>\n"
+"<p style=\" margin-top:10px; margin-bottom:0px; margin-left:0px;padding-left:5px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:15px;\"></span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         
         self.textEdit.setReadOnly(True)
         self.textEdit_2.setReadOnly(True)
-        self.textEdit_2.setStyleSheet("margin-left:10px;padding:10px;")
+        self.textEdit_2.setStyleSheet("padding-left:10px;color:white")
+        self.textEdit_2.setText("---Status---\n\nLoading....")
+        self.textEdit.setText("--------Suggestions--------\n\nLoading...")
         # self.startbutton.clicked.connect(self.call_pose_estimation)
 
     # @pyqtSlot(dict)
@@ -199,26 +201,33 @@ class Ui_Form(object):
         #get exercise limits
         if(args.exercise == 'bicep'):
             body=Bicep()
+            self.exercise.setText("Bicep Curl")
         
         elif(args.exercise=="shoulder"):
             body=Shoulder()
+            self.exercise.setText("Shoulder Dumbbell Press")
 
         elif(args.exercise=="tricep"):
             body=Tricep()
+            self.exercise.setText("Pulley Push Down")
 
-        status=""
+        status="Status:"
         amount=""
+        sug="--------Suggestions--------\n\n"
         count_correct=0;error=1
+
+        #add suggestions
+        for i,suggestion in enumerate(body.get_suggestions()):
+            sug+=f'{i+1}.{suggestion}.\n\n'
+            self.textEdit.setText(sug)
         
         #dynamically updating value of the angles
         for i, joint in enumerate(joints):
-            print(joint)
             self.d["jointNumber"+str(i+1)].setText("Joint("+str(joint)+") :")
             self.d_v["jointValue"+str(i+1)].setText(str(round(joints[joint],2)))
 
             #maintaining status
             ang_start,ang_stop=body.get_limit(joint)
-            print("angle",ang_start," ,",ang_stop)
             if(joints[joint] >= ang_start and joints[joint]<=ang_stop):
                 count_correct+=1
             else:
@@ -231,7 +240,7 @@ class Ui_Form(object):
                 error+=1
 
             if(count_correct==len(joints)):
-                status="Perfect"
+                status="Status:\nPerfect"
                 self.textEdit_2.setStyleSheet("color: rgb(128, 255, 128)")
             else:
                 self.textEdit_2.setStyleSheet("color:rgb(255, 26, 26)")

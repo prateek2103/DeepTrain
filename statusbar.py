@@ -138,8 +138,8 @@ class Ui_Form(object):
 
         logger.info('inference image: %s in %.4f seconds.' % (args.image, elapsed))
 
-        image ,joints = TfPoseEstimator.draw_humans( args.exercise,image, humans, imgcopy=False)
-        
+        image ,joints,centers = TfPoseEstimator.draw_humans( args.exercise,image, humans, imgcopy=False)
+        print(centers)
 
         self.d={};self.d_v={};body=None;inc=0
         status=""
@@ -156,7 +156,10 @@ class Ui_Form(object):
         elif(args.exercise=="tricep"):
             body=Tricep()
 
-      
+        status_message,status_flag=body.check_form(centers)
+        print(status_message)
+        status+=status_message
+
         for index,joint in enumerate(joints):
             ang_start,ang_stop=body.get_limit(joint)
 
@@ -177,25 +180,29 @@ class Ui_Form(object):
 
             inc+=40
             
-            if(joints[joint] >= ang_start and joints[joint]<=ang_stop):
-                count_correct+=1
+            if(status_flag==-1):
+                break
             else:
-                if(joints[joint]>ang_stop):
-                    amount="expansion"
-                elif(joints[joint]<ang_start):
-                    amount="contraction"
+                if(joints[joint] >= ang_start and joints[joint]<=ang_stop):
+                    count_correct+=1
+                else:
+                    if(joints[joint]>ang_stop):
+                        amount="expansion"
+                    elif(joints[joint]<ang_start):
+                        amount="contraction"
 
-                status+=f"{error}. Too much {amount} of Joint({joint})\n"
-                error+=1
+                    status+=f"{error}. Too much {amount} of Joint({joint})\n"
+                    error+=1
 
-            if(count_correct==len(joints)):
-                status="Perfect"
-                self.textEdit_2.setStyleSheet("color: rgb(128, 255, 128)")
-            else:
-                self.textEdit_2.setStyleSheet("color:rgb(255, 26, 26)")
-            
-            self.textEdit_2.setText(status)
-            
+                if(count_correct==len(joints)):
+                    status="Perfect"
+                    self.textEdit_2.setStyleSheet("color: rgb(128, 255, 128)")
+                else:
+                    self.textEdit_2.setStyleSheet("color:rgb(255, 26, 26)")
+                
+        self.textEdit_2.setStyleSheet("color:white")
+        self.textEdit_2.setText(status)
+                
         try:
             import matplotlib
             import matplotlib.pyplot as plt
@@ -210,6 +217,7 @@ class Ui_Form(object):
 
         except Exception as e:
             logger.warning('matplitlib error, %s' % e)
+            image=cv2.resize(image,(w,h),interpolation=cv2.INTER_AREA)
             cv2.imshow('result', image)
 
 if __name__ == "__main__":

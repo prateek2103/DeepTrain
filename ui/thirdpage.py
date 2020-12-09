@@ -120,8 +120,9 @@ class Ui_MainWindow(object):
     def call_func(self):
         self.actionbutton.setText("Opened")
         if(self.actionbutton.text()=="Opened"):
-                os.system(self.exercise.command)
                 print(self.exercise.command)
+                os.system(self.exercise.command)
+               
        
         
     def go_back(self):

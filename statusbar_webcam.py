@@ -32,7 +32,7 @@ def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
 
 parser = argparse.ArgumentParser(description='tf-pose-estimation realtime webcam')
-parser.add_argument('--camera', type=int, default=0)
+parser.add_argument('--camera', type=str, default=0)
 
 parser.add_argument('--resize', type=str, default='0x0',
                     help='if provided, resize images before they are processed. default=0x0, Recommends : 432x368 or 656x368 or 1312x736 ')
@@ -53,7 +53,7 @@ args = parser.parse_args()
 logger.debug('initialization %s : %s' % (args.model, get_graph_path(args.model)))
 
 class VideoThread(QThread):
-    change_data_signal = pyqtSignal(dict)
+    change_data_signal = pyqtSignal(dict,dict)
 
     def run(self):
         w, h = model_wh(args.resize)
@@ -72,12 +72,13 @@ class VideoThread(QThread):
             humans = e.inference(image, resize_to_default=(w > 0 and h > 0), upsample_size=args.resize_out_ratio)
 
             logger.debug('postprocess+')
-            image,joints = TfPoseEstimator.draw_humans(args.exercise,image, humans, imgcopy=False)
+            image,joints,centers = TfPoseEstimator.draw_humans(args.exercise,image, humans, imgcopy=False)
             # print(joints)
-            self.change_data_signal.emit(joints)
+            self.change_data_signal.emit(joints,centers)
             
             
             logger.debug('show+')
+            # image=cv2.resize(image,(w,h),interpolation=cv2.INTER_AREA)
             cv2.imshow('tf-pose-estimation result', image)
             # fps_time = time.time()
             # cv2.putText(image,
@@ -89,8 +90,7 @@ class VideoThread(QThread):
             # logger.debug('finished+')
 
             # cv2.destroyAllWindows()
-
-
+    
 class Ui_Form(object):
     def __init__(self):
         self.d={};self.d_v={}
@@ -195,7 +195,7 @@ class Ui_Form(object):
         # self.startbutton.clicked.connect(self.call_pose_estimation)
 
     # @pyqtSlot(dict)
-    def update_data(self,joints):
+    def update_data(self,joints,centers):
         print("getting called",joints)
         body=None
         #get exercise limits
@@ -211,7 +211,7 @@ class Ui_Form(object):
             body=Tricep()
             self.exercise.setText("Pulley Push Down")
 
-        status="Status:"
+        status="Status:\n"
         amount=""
         sug="--------Suggestions--------\n\n"
         count_correct=0;error=1
@@ -222,30 +222,38 @@ class Ui_Form(object):
             self.textEdit.setText(sug)
         
         #dynamically updating value of the angles
+        status_message,status_flag=body.check_form(centers)
+        print(status_message)
+        status+=status_message+"\n"
+        self.textEdit_2.setStyleSheet("color:rgb(255, 26, 26)")
+
         for i, joint in enumerate(joints):
             self.d["jointNumber"+str(i+1)].setText("Joint("+str(joint)+") :")
             self.d_v["jointValue"+str(i+1)].setText(str(round(joints[joint],2)))
 
             #maintaining status
             ang_start,ang_stop=body.get_limit(joint)
-            if(joints[joint] >= ang_start and joints[joint]<=ang_stop):
-                count_correct+=1
+            if(status_flag==-1):
+                break
             else:
-                if(joints[joint]>ang_stop):
-                    amount="expansion"
-                elif(joints[joint]<ang_start):
-                    amount="contraction"
+                if(joints[joint] >= ang_start and joints[joint]<=ang_stop):
+                    count_correct+=1
+                else:
+                    if(joints[joint]>ang_stop):
+                        amount="expansion"
+                    elif(joints[joint]<ang_start):
+                        amount="contraction"
 
-                status+=f"{error}. Too much {amount} of Joint({joint})\n"
-                error+=1
+                    status+=f"{error}. Too much {amount} of Joint({joint})\n"
+                    error+=1
 
-            if(count_correct==len(joints)):
-                status="Status:\nPerfect"
-                self.textEdit_2.setStyleSheet("color: rgb(128, 255, 128)")
-            else:
-                self.textEdit_2.setStyleSheet("color:rgb(255, 26, 26)")
-            
-            self.textEdit_2.setText(status)
+                if(count_correct==len(joints)):
+                    status="Status:\nPerfect"
+                    self.textEdit_2.setStyleSheet("color: rgb(128, 255, 128)")
+                else:
+                    self.textEdit_2.setStyleSheet("color:rgb(255, 26, 26)")
+                
+        self.textEdit_2.setText(status)
 
 
 if __name__ == "__main__":

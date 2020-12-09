@@ -25,7 +25,7 @@ class Shoulder(Exercise):
         self.heading="Shoulder"
         self.subheading="Shoulder Press"
         self.image="shoulderpress"
-        self.command="python "+basedir+"\\statusbar_webcam.py --camera=0 --model=mobilenet_thin --exercise=shoulder"
+        self.command="python "+basedir+"\\statusbar_webcam.py --camera=./videos/dumbbell_press.mp4 --model=mobilenet_v2_large --exercise=shoulder"
 
 class Bicep(Exercise):
     def __init__(self):
@@ -38,7 +38,7 @@ class Bicep(Exercise):
         self.heading='Bicep'
         self.subheading="Bicep Curl"
         self.image='bicepcurl'
-        self.command="python "+basedir+"\\statusbar_webcam.py --model=mobilenet_thin --camera=0 --exercise=bicep"
+        self.command="python "+basedir+"\\statusbar_webcam.py --model=mobilenet_v2_large --camera=./videos/bicepcurl.mp4 --exercise=bicep"
 
 class Tricep(Exercise):
     def __init__(self):
@@ -50,4 +50,4 @@ class Tricep(Exercise):
         self.heading='Tricep'
         self.subheading='Pulley Push Down'
         self.image='triceppush'
-        self.command="python "+basedir+"\\statusbar.py --model=cmu --camera=0 --exercise=tricep"
+        self.command="python "+basedir+"\\statusbar_webcam.py --model=mobilenet_v2_large --camera=./videos/pulley_push_down.mp4 --exercise=tricep"

@@ -464,7 +464,10 @@ class TfPoseEstimator:
             #             status='Correct'
             # cv2.putText(npimg,status,(216,20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
-        return (npimg,data)
+            #save centers
+            
+                
+        return (npimg,data,centers)
 
     def _get_scaled_img(self, npimg, scale):
         get_base_scale = lambda s, w, h: max(self.target_size[0] / float(h), self.target_size[1] / float(w)) * s

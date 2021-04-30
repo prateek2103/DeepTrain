@@ -30,8 +30,8 @@ class Bicep(Joints):
         super().__init__()
         self.parts=(2, 3, 4, 5, 6, 7)
         self.pairs=((2, 3), (3, 4), (5, 6), (6, 7))
-        self.angle_limits={3:(50,170),
-                            6:(50,170)}
+        self.angle_limits={3:(30,160),
+                            6:(30,160)}
         
         self.suggestions=["Fix your elbows","Squeeze at the top","Too heavy weight is good for nothing"]
 

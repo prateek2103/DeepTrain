@@ -451,20 +451,9 @@ class TfPoseEstimator:
             for i in range(len(joints)-1):
                 if(all(j in human.body_parts.keys() for j in [joints[i][0], joints[i+1][0], joints[i+1][1]]) and joints[i][1] == joints[i+1][0]):
                     midpoint=joints[i][1]
-                    dispx,dispy=centers[midpoint]
-                    # ang_start,ang_stop=body.get_limit(midpoint)
-                    # print(joints[i][1])
+                    # dispx,dispy=centers[midpoint]
                     ang = utils.get_angle(centers[joints[i][0]],centers[joints[i][1]],centers[joints[i+1][1]])
                     data[midpoint]=ang
-                    # cv2.putText(npimg, str(round(ang, 2)), (dispx, dispy), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-                    # status=""
-            #         if(ang not in range(ang_start,ang_stop+1)):
-            #             status="Incorrect"
-            #         else:
-            #             status='Correct'
-            # cv2.putText(npimg,status,(216,20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
-
-            #save centers
             
                 
         return (npimg,data,centers)

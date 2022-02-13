@@ -1,5 +1,1 @@
-#tf pose estimation
-
-References : https://github.com/ildoonet/tf-pose-estimation
-
-using idoolnet openpose architecture to create a trainer for gym enthusiasts.
+DeepTrain is a machine learning application that helps you exercise at home just by using simple equipments like dumbells.

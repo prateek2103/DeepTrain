@@ -46,3 +46,6 @@
 <p align="center">
 <img width="555" alt="Screenshot 2022-06-25 at 2 28 45 AM" src="https://user-images.githubusercontent.com/30109806/175667909-c956281a-8d8e-4936-a083-3c9bef8e8a2b.png">
 </p>
+
+## Languages Used:
+- Python (PyQT for UI and machine learning for backend ofcourse)
